@@ -17,6 +17,9 @@ mkdir /mnt/config
 mkdir /mnt/data
 copy attached config file to /mnt/config
 ```
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s2.JPG)
+
+
 ```git
 git clone https://github.com/wurstmeister/kafka-docker.git
 ```
@@ -29,6 +32,10 @@ git clone https://github.com/wurstmeister/kafka-docker.git
 apt install docker-compose
 ```
 ####  Update docker-compose.yml and change ADVERTISE_HOST to local machine IP
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s1.JPG)
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s3.JPG)
+
+
 
 
 ```
@@ -59,6 +66,9 @@ docker ps –a
 The port number is corresponding to your shri4u/kafkacat container
 
 
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s4.JPG)
+
+
 ```
 kafkacat -P -b 10.0.2.15:32768 -t test
 ```
@@ -68,6 +78,7 @@ kafkacat -P -b 10.0.2.15:32768 -t test
 ```
 kafkacat -C -b 10.0.2.15:32768 -t test
 ```
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s5.JPG)
 
 
 #### Start the Minio Server
@@ -90,6 +101,7 @@ eg.
 mc config host add <ALIAS> <YOUR-S3-ENDPOINT> <YOUR-ACCESS-KEY> <YOUR-SECRET-KEY> <API-SIGNATURE>
 ```
 Give it a name eg. myminio
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s6.JPG)
 
 
 Make a new bucket using:
@@ -110,6 +122,9 @@ Setup the event
 ```
 mc event add myminio/test1 arn:minio:sqs:sanity-local:1:kafka
 ```
+
+
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s7.JPG)
 
 
 #### Monitor the bucket events using Kafka
@@ -145,14 +160,20 @@ vi testfile
 ```
 
 
+
+
+
+
+
+
 ###### Copy it in the bucket
 
 
 ```
 mc cp testfile myminio/test1
 ```
-
-
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s8.JPG)
+![alt text](https://github.com/paritoshshirodkar/minio-kafka/Screenshots/s9.JPG)
 
 
 #  You should be able to see this event being captured in the kafkacat terminal !
